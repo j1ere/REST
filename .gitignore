@@ -1,0 +1,25 @@
+# Ignore virtual environment folder
+venv/
+env/
+
+# Ignore Python bytecode
+*.py[cod]
+__pycache__/
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Ignore VSCode files
+.vscode/
+
+# Django specific files
+*.log
+*.pot
+*.pyc
+media/
+
+# System files
+.DS_Store
+Thumbs.db

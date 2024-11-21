@@ -13,4 +13,10 @@ def api_view(request, *args, **kwargs):
     except:
         pass
     print(data.keys())
+    print(request.headers)
+    print(request.content_type)
+    data["content_type"] = request.content_type
+    data["headers"] = dict(request.headers)
+    data["params"] = request.GET
+    print(request.GET)
     return JsonResponse(data)
