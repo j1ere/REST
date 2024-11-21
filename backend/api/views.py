@@ -1,5 +1,6 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
+from django.forms.models import model_to_dict
 import json
 from django.http import JsonResponse
 from products.models import Product
@@ -30,3 +31,14 @@ def model_api(request, *args, **kwargs):
         data["description"] = random_model_instance.content
         data["price"] = random_model_instance.price
         return JsonResponse(data)
+
+@csrf_exempt
+def model_api_serialized(request, *args, **kwargs):
+    client = request.body
+    print(json.loads(client))
+
+    random_model_instance = Product.objects.all().order_by("?").first()
+    data = {}
+    if random_model_instance:
+        data = model_to_dict(random_model_instance)
+    return JsonResponse(data)
