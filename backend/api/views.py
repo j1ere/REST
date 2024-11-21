@@ -40,5 +40,5 @@ def model_api_serialized(request, *args, **kwargs):
     random_model_instance = Product.objects.all().order_by("?").first()
     data = {}
     if random_model_instance:
-        data = model_to_dict(random_model_instance)
+        data = model_to_dict(random_model_instance, fields=['title', 'price'])#specify fields to send
     return JsonResponse(data)
