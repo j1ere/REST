@@ -1,12 +1,14 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from django.forms.models import model_to_dict
 import json
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from products.models import Product
 # Create your views here.
 @csrf_exempt
-def api_view(request, *args, **kwargs):
+def custom_api_view(request, *args, **kwargs):
     from_basic=request.body
     data = {}
     try:
@@ -42,3 +44,14 @@ def model_api_serialized(request, *args, **kwargs):
     if random_model_instance:
         data = model_to_dict(random_model_instance, fields=['title', 'price'])#specify fields to send
     return JsonResponse(data)
+
+@api_view(["POST"])
+@csrf_exempt
+def model_api_drf(request, *args, **kwargs):
+    client = request.body
+    print(f"{json.loads(client)}")
+    random_model_instance = Product.objects.all().order_by("?").first()
+    data = {}
+    if random_model_instance:
+        data = model_to_dict(random_model_instance)
+    return Response(data)
