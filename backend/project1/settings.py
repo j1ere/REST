@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "api",
     "products",
+    "model_decorators",
 ]
 
 MIDDLEWARE = [
