@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import timedelta
 from django.utils import timezone
+from django.utils.functional import cached_property
 
 # Create your models here.
 class Task(models.Model):
@@ -49,10 +50,6 @@ class Order(models.Model):
         """
         return amount * (discount_rate/100)
 
-    
-    
-from django.utils.functional import cached_property
-
 class Article(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()
@@ -60,7 +57,7 @@ class Article(models.Model):
     @cached_property
     def word_count(self):
         """
-        Calculate and cache the word count of the content.
+        calculate and cache the word count of the content
         """
         return len(self.content.split())
 
