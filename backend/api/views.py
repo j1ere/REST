@@ -69,5 +69,5 @@ class BookListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = BookSerializer
 
 class MyBookListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Book.objects.filter(author__icontains="M")
+    queryset = Book.objects.filter(author__endswith="Munyao")
     serializer_class = MyBookSerializer
