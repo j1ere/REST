@@ -69,5 +69,5 @@ class BookListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = BookSerializer
 
 class MyBookListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Book.objects.filter(publish_date__isnull=True)
+    queryset = Book.objects.filter(author__icontains='o').filter(publish_date__range=['2000-01-01','2020-01-01'])
     serializer_class = MyBookSerializer
