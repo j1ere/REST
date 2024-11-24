@@ -55,3 +55,15 @@ def model_api_drf(request, *args, **kwargs):
     if random_model_instance:
         data = model_to_dict(random_model_instance)
     return Response(data)
+
+
+"""
+django rest framework serializers(modelserializers)
+"""
+from rest_framework import generics
+from products.models import Book
+from products.serializers import BookSerializer
+
+class BookListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer

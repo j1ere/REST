@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "api",
     "products",
     "model_decorators",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [

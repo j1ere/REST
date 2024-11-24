@@ -6,4 +6,5 @@ urlpatterns = [
     path("models/", views.model_api),
     path("models_serialized/", views.model_api_serialized),
     path("drf_response/", views.model_api_drf),
+    path("books/", views.BookListCreateAPIView.as_view()),
 ]

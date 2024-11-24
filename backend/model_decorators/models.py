@@ -65,3 +65,16 @@ class Article(models.Model):
 # article = Article.objects.get(id=1)
 # print(article.word_count)  # Calculates once and caches
 
+
+"""
+Combining @property with @cached_property is an efficient way to compute expensive 
+calculations or dynamically generate values that depend on other fields,
+while ensuring the value is only computed once per instance and cached for subsequent
+accesses.  
+"""
+"""
+imagine an e-comerce system where each order has multiple orderitems(eg, phones,laptops, earphones).
+the total price of the order is calculated dynamically by summing up the price of all items
+in the order and applying discounts,and adding tax.
+this computation can be expensive if there are many items, so we want to cache it.
+"""
