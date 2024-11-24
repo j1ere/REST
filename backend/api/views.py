@@ -62,8 +62,12 @@ django rest framework serializers(modelserializers)
 """
 from rest_framework import generics
 from products.models import Book
-from products.serializers import BookSerializer
+from products.serializers import BookSerializer, MyBookSerializer
 
 class BookListCreateAPIView(generics.ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+
+class MyBookListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Book.objects.filter(author__exact="Munyao Munyao")
+    serializer_class = MyBookSerializer
