@@ -30,7 +30,7 @@ class MyBookSerializer(serializers.ModelSerializer):
     days_since_publish = serializers.SerializerMethodField()
     class Meta:
         model = Book
-        fields = ['title', 'author', 'days_since_publish']
+        fields = ['title', 'author', 'publish_date','days_since_publish']
 
     def get_days_since_publish(self, obj):
         publish_datetime = datetime.combine(obj.publish_date, datetime.min.time(), tzinfo= timezone.utc)
