@@ -68,6 +68,12 @@ class BookListCreateAPIView(generics.ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
+    def get_queryset(self):
+        author = self.request.query_params.get('author')
+        if author:
+            return self.queryset.filter(author__icontains=author)
+        return None
+
 class MyBookListCreateAPIView(generics.ListCreateAPIView):
     queryset = Book.objects.filter(author__icontains='o').filter(publish_date__range=['2000-01-01','2020-01-01'])
     serializer_class = MyBookSerializer
